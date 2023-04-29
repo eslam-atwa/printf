@@ -9,31 +9,31 @@ int _printf(const char * const format, ...)
 	conversion m[] = {
 		{"%s", printf_string}, {"%c", printf_char}};
 
-	va_list args;
-	int i = 0, j, len = 0;
+	va_list ar;
+	int i = 0, re, size = 0;
 
-	va_start(args, format);
+	va_start(ar, format);
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
-Here:
+There:
 	while (format[i] != '\0')
 	{
-		j = 1;
-		while (j >= 0)
+		re = 1;
+		while (re >= 0)
 		{
-			if (m[j].kind[0] == format[i] && m[j].kind[1] == format[i + 1])
+			if (m[re].kind[0] == format[re] && m[re].kind[1] == format[i + 1])
 			{
-				len += m[j].foo(args);
+				size += m[re].foo(ar);
 				i = i + 2;
-				goto Here;
+				goto There;
 			}
-			j--;
+			re--;
 		}
 		_putchar(format[i]);
-		len++;
+		size++;
 		i++;
 	}
-	va_end(args);
-	return (len);
+	va_end(ar);
+	return (size);
 }

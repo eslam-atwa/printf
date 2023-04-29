@@ -4,7 +4,7 @@
 
 int main(void)
 {
-	_printf("fd");
+	_printf("fd%s", "dfs");
 
     return 0;
 }
