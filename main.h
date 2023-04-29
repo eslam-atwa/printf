@@ -13,8 +13,8 @@
  */
 typedef struct form
 {
-        char *id;
-        int (*f)();
+        char *kind;
+        int (*foo)();
 } conversion;
 int printf_pointer(va_list val);
 int printf_hex_aux(unsigned long int num);
