@@ -26,16 +26,3 @@ int printf_string(va_list val)
 		return (len);
 	}
 }
-/**
- * _strlen - gives the link of any string literal.
- * @s: poiter to string.
- * Return: len.
- */
-int _strlen(char *s)
-{
-	int len;
-
-	for (len = 0; s[len] != 0; len++);
-
-        return (len);
-}

@@ -1,9 +1,8 @@
 #include "main.h"
-
 /**
- * _printf - THE PRINTF ITSELF.
- * @format: the format to be printed.
- * Return: number of chars.
+ * _printf - is a function that selects the correct function to print.
+ * @format: identifier to look for.
+ * Return: the length of the string.
  */
 int _printf(const char * const format, ...)
 {
@@ -17,17 +16,17 @@ int _printf(const char * const format, ...)
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
-there:
+Here:
 	while (format[i] != '\0')
 	{
-		j = 2;
+		j = 1;
 		while (j >= 0)
 		{
 			if (m[j].kind[0] == format[i] && m[j].kind[1] == format[i + 1])
 			{
 				len += m[j].foo(args);
 				i = i + 2;
-				goto there;
+				goto Here;
 			}
 			j--;
 		}
