@@ -1,22 +1,22 @@
 #include "main.h"
 /**
- * _printf - is a function that selects the correct function to print.
- * @format: identifier to look for.
- * Return: the length of the string.
+ * _printf - THE PRINTF ITSELF
+ * @format: the identifer.
+ * Return: len of the string
  */
 int _printf(const char * const format, ...)
 {
 	conversion m[] = {
-		{"%s", printf_string}, {"%c", printf_char}};
+		{"%s", printf_string}, {"%c", printf_char},
+		{"%%", printf_37}, {"%b", printf_bin}};
+	va_list args;
+	int i = 0, re, len = 0;
 
-	va_list ar;
-	int i = 0, re, size = 0;
-
-	va_start(ar, format);
+	va_start(args, format);
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
-There:
+there:
 	while (format[i] != '\0')
 	{
 		re = 1;
@@ -24,16 +24,16 @@ There:
 		{
 			if (m[re].kind[0] == format[re] && m[re].kind[1] == format[i + 1])
 			{
-				size += m[re].foo(ar);
+				len += m[re].foo(args);
 				i = i + 2;
-				goto There;
+				goto there;
 			}
 			re--;
 		}
 		_putchar(format[i]);
-		size++;
+		len++;
 		i++;
 	}
-	va_end(ar);
-	return (size);
+	va_end(args);
+	return (len);
 }
